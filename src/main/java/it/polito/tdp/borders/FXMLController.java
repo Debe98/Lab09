@@ -66,7 +66,8 @@ public class FXMLController {
     	Country c = cmbStati.getValue();
     	List <Country> vicini;
     	try {
-			vicini = model.getVicini(c);
+			//vicini = model.getVicini(c);
+			vicini = model.getViciniRicorsivo(c);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			txtResult.setText(e.getMessage());

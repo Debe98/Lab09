@@ -56,7 +56,7 @@ public class Model {
 
 	public List<Country> getVicini(Country c) throws Exception {
 		if (grafo == null)
-			throw new Exception("Prima Scegli un anno!");
+			throw new Exception("Prima scegli un anno!");
 		List<Country> result = new LinkedList<Country>();
 		
 		GraphIterator <Country, DefaultEdge> iter = new BreadthFirstIterator<Country, DefaultEdge>(grafo, c);
@@ -99,14 +99,15 @@ public class Model {
 		return result;
 	}
 	
-	/*
 	public List<Country> getViciniRicorsivo(Country c) throws Exception {
 		if (grafo == null)
-			throw new Exception("Prima Scegli un anno!");
+			throw new Exception("Prima scegli un anno!");
 		List<Country> result = new LinkedList<Country>();
-		
+		Set<Country> research = new HashSet<Country>();
+		ricorsioneVicini(c, result, research);
+		return result;
 	}
-	
+	/*
 	public List<Country> getViciniIterativo(Country c) throws Exception {
 		if (grafo == null)
 			throw new Exception("Prima Scegli un anno!");
@@ -116,6 +117,18 @@ public class Model {
 		return result;
 	}
 	*/
+	private void ricorsioneVicini(Country c, List<Country> lista, Set <Country> insieme) {
+		//Graphs.neighborListOf(grafo, c) ---> per lista!
+				
+		lista.add(c);
+		insieme.add(c);
+		
+		for (Country p : Graphs.neighborSetOf(grafo, c)) {
+			if (!insieme.contains(p)) {
+				ricorsioneVicini(p, lista, insieme);
+			}
+		}
+	}
 	
 	public int getAnno() {
 		return anno;
