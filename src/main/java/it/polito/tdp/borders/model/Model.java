@@ -107,16 +107,7 @@ public class Model {
 		ricorsioneVicini(c, result, research);
 		return result;
 	}
-	/*
-	public List<Country> getViciniIterativo(Country c) throws Exception {
-		if (grafo == null)
-			throw new Exception("Prima Scegli un anno!");
-		List<Country> result = new LinkedList<Country>();
-		//List.add
-		
-		return result;
-	}
-	*/
+	
 	private void ricorsioneVicini(Country c, List<Country> lista, Set <Country> insieme) {
 		//Graphs.neighborListOf(grafo, c) ---> per lista!
 				
@@ -128,6 +119,25 @@ public class Model {
 				ricorsioneVicini(p, lista, insieme);
 			}
 		}
+	}
+	
+	public List<Country> getViciniIterativo(Country c) throws Exception {
+		if (grafo == null)
+			throw new Exception("Prima scegli un anno!");
+		List<Country> daVisitare = new LinkedList<Country>();
+		daVisitare.add(c);
+		List<Country> visitati = new LinkedList<Country>();
+		
+		Country paese;
+		while (!daVisitare.isEmpty()) {
+			paese = daVisitare.get(0);
+			daVisitare.remove(paese);
+			visitati.add(paese);
+			for (Country p : Graphs.neighborListOf(grafo, paese))
+				if (!visitati.contains(p) && !daVisitare.contains(p))
+					daVisitare.add(p);
+		}
+		return visitati;
 	}
 	
 	public int getAnno() {

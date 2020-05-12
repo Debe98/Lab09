@@ -67,7 +67,8 @@ public class FXMLController {
     	List <Country> vicini;
     	try {
 			//vicini = model.getVicini(c);
-			vicini = model.getViciniRicorsivo(c);
+			//vicini = model.getViciniRicorsivo(c);
+			vicini = model.getViciniIterativo(c);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			txtResult.setText(e.getMessage());
