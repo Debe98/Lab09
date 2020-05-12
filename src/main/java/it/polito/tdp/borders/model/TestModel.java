@@ -6,7 +6,15 @@ public class TestModel {
 
 		Model model = new Model();
 
+		
 		System.out.println("TestModel -- TODO");
+		try {
+			System.out.println("Vertici: "+model.getConfini(2000).vertexSet().size());
+			System.out.println("Confini: "+model.getConfini(2000).edgeSet().size());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
 		
 //		System.out.println("Creo il grafo relativo al 2000");
 //		model.createGraph(2000);
